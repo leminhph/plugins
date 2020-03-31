@@ -10,6 +10,12 @@ void main() {
   E2EWidgetsFlutterBinding.ensureInitialized();
 
   testWidgets('Can launch share', (WidgetTester tester) async {
-    expect(Share.share('message', subject: 'title'), completes);
+    expect(
+        Share.share(
+          'message',
+          subject: 'title',
+          dialogTitle: 'share',
+        ),
+        completes);
   });
 }

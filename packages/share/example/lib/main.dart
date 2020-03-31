@@ -19,6 +19,7 @@ class DemoApp extends StatefulWidget {
 class DemoAppState extends State<DemoApp> {
   String text = '';
   String subject = '';
+  String dialogTitle = '';
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +54,16 @@ class DemoAppState extends State<DemoApp> {
                     subject = value;
                   }),
                 ),
+                TextField(
+                  decoration: const InputDecoration(
+                    labelText: 'Share dialog title:',
+                    hintText: 'Customize share dialog title (optional)',
+                  ),
+                  maxLines: 1,
+                  onChanged: (String value) => setState(() {
+                    dialogTitle = value;
+                  }),
+                ),
                 const Padding(padding: EdgeInsets.only(top: 24.0)),
                 Builder(
                   builder: (BuildContext context) {
@@ -72,8 +83,8 @@ class DemoAppState extends State<DemoApp> {
                               Share.share(text,
                                   subject: subject,
                                   sharePositionOrigin:
-                                      box.localToGlobal(Offset.zero) &
-                                          box.size);
+                                      box.localToGlobal(Offset.zero) & box.size,
+                                  dialogTitle: dialogTitle);
                             },
                     );
                   },

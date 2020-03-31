@@ -46,6 +46,7 @@ void main() {
       'some text to share',
       subject: 'some subject to share',
       sharePositionOrigin: const Rect.fromLTWH(1.0, 2.0, 3.0, 4.0),
+      dialogTitle: 'fancy title',
     );
     verify(mockChannel.invokeMethod<void>('share', <String, dynamic>{
       'text': 'some text to share',
@@ -54,6 +55,7 @@ void main() {
       'originY': 2.0,
       'originWidth': 3.0,
       'originHeight': 4.0,
+      'dialogTitle': 'fancy title',
     }));
   });
 }
