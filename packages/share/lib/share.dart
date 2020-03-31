@@ -28,12 +28,16 @@ class Share {
   /// origin rect for the share sheet to popover from on iPads. It has no effect
   /// on non-iPads.
   ///
+  /// The optional [dialogTitle] parameter can be used to customize the title
+  /// of the share dialog. It has no effect on non-Android devices.
+  ///
   /// May throw [PlatformException] or [FormatException]
   /// from [MethodChannel].
   static Future<void> share(
     String text, {
     String subject,
     Rect sharePositionOrigin,
+    String dialogTitle,
   }) {
     assert(text != null);
     assert(text.isNotEmpty);
@@ -47,6 +51,10 @@ class Share {
       params['originY'] = sharePositionOrigin.top;
       params['originWidth'] = sharePositionOrigin.width;
       params['originHeight'] = sharePositionOrigin.height;
+    }
+
+    if (dialogTitle != null) {
+      params['dialogTitle'] = dialogTitle;
     }
 
     return channel.invokeMethod<void>('share', params);

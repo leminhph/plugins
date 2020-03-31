@@ -29,7 +29,7 @@ class Share {
     this.activity = activity;
   }
 
-  void share(String text, String subject) {
+  void share(String text, String subject, String dialogTitle) {
     if (text == null || text.isEmpty()) {
       throw new IllegalArgumentException("Non-empty text expected");
     }
@@ -39,7 +39,14 @@ class Share {
     shareIntent.putExtra(Intent.EXTRA_TEXT, text);
     shareIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
     shareIntent.setType("text/plain");
-    Intent chooserIntent = Intent.createChooser(shareIntent, null /* dialog title optional */);
+
+    Intent chooserIntent
+    if (dialogTitle == null || dialogTitle.isEmpty()) {
+      chooserIntent = Intent.createChooser(shareIntent, null);
+    } else {
+      chooserIntent = Intent.createCHooser(shareIntent, dialogTitle);
+    }
+
     if (activity != null) {
       activity.startActivity(chooserIntent);
     } else {

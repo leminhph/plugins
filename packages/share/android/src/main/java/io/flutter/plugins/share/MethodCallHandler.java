@@ -24,7 +24,7 @@ class MethodCallHandler implements MethodChannel.MethodCallHandler {
         throw new IllegalArgumentException("Map argument expected");
       }
       // Android does not support showing the share sheet at a particular point on screen.
-      share.share((String) call.argument("text"), (String) call.argument("subject"));
+      share.share((String) call.argument("text"), (String) call.argument("subject"), (String) call.argument("dialogTitle"));
       result.success(null);
     } else {
       result.notImplemented();
