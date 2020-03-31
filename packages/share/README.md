@@ -32,3 +32,9 @@ sharing to email.
 ``` dart
 Share.share('check out my website https://example.com', subject: 'Look what I made!');
 ```
+
+To customize title of the share dialog, use `dialogTitle` paramater:
+
+``` dart
+Share.share('check out my website https://example.com', dialogTitle: 'Share this wonderful message via');
+```
